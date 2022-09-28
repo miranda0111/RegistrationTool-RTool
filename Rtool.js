@@ -3,6 +3,7 @@
 Rtool单人版
 打开报名工具链接页面即可------
 重写：https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v2/detail url script-response-body Rtool.js
+https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/user_list url script-response-header Rtool.js
 主机名：api-xcx-qunsou.weiyoubot.cn
 
 参数说明：
