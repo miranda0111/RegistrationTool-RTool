@@ -4,7 +4,6 @@ Rtool单人版
 打开报名工具链接页面即可------
 重写：https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v2/detail url script-response-body Rtool.js
 主机名：api-xcx-qunsou.weiyoubot.cn
-感谢：https://github.com/yml2213、https://github.com/ygxiuming/Lecture-registration
 
 参数说明：
 let acadamy = "";//学院 ，要在  ""  里面填写相关信息
