@@ -17,5 +17,5 @@
 
 * [@whyour](https://github.com/whyour/qinglong)「青龙」
 * [@xl2101200](https://github.com/xl2101200/-/)「Tom」
-* [@ygxiuming](https://github.com/ygxiuming/Lecture-registration.git)「ygxiuming」
 * [@yml2213](https://github.com/yml2213/javascript)「yml2213」
+* [@ygxiuming](https://github.com/ygxiuming/Lecture-registration.git)「ygxiuming」
