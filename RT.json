@@ -9,7 +9,7 @@
         "id": "RTool",
     "name": "报名工具小程序",
     "keys": ["Rtoken"],
-    "author": "@leafxcy",
+    "author": "@RT",
     "settings": [ {
             "id": "Rname",
             "name": "姓名",
