@@ -8,9 +8,15 @@
       {
         "id": "RTool",
     "name": "报名工具小程序",
-    "keys": ["Rtoken"],
+    "keys": ["RTool1"],
     "author": "@RT",
     "settings": [ {
+        "id": "Rtoken",
+        "name": "access_token",
+        "val": "",
+        "type": "textarea",
+        "desc": ""
+    } , {
             "id": "Rname",
             "name": "姓名",
             "val": "",
