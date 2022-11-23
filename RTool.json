@@ -35,6 +35,12 @@
             "type": "textarea",
             "desc": ""
     } ,{
+        "id": "R1111",
+        "name": "暂时存储数据",
+        "val": "",
+        "type": "textarea",
+        "desc": ""
+    } ,{
             "id": "Rwechat",
             "name": "Rwechat",
             "val": "",
