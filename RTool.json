@@ -4,52 +4,65 @@
     "author": "@miranda0111",
     "icon": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png",
     "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
-    "apps": [
-      {
-    "id": "RTurl",
-    "name": "报名工具小程序",
-    "keys": ["RTurl","RToolhd"],
-    "author": "@miranda0111",
-    "settings": [ {
+    "apps": [{
+        "id": "RTurl",
+        "name": "报名工具小程序",
+        "keys": ["RTurl", "RToolhd"],
+        "author": "@miranda0111",
+        "descs_html": [
+            "使用方式：自己抓包获取相应的字段。多账号用@连接"
+        ],
+        "settings": [{
             "id": "Rtoken",
             "name": "填入access_token",
             "val": "",
-            "type": "text",
-            "desc": "抓包获取的或者利用扫码登录获取token"
-    } , {
+            "type": "textarea",
+            "desc": "可利用扫码登录获取token"
+        }, {
             "id": "Rname",
-            "name": "姓名", 
+            "name": "姓名",
             "val": "",
             "type": "text",
             "desc": "名字用@隔开"
-    } , {
+        }, {
             "id": "RID",
             "name": "学号",
             "val": "",
             "type": "text",
             "desc": ""
-    },{
+        }, {
             "id": "Rphone",
             "name": "手机号",
             "val": "",
             "type": "text",
             "desc": ""
-    } ,{
-            "id": "R1111",
-            "name": "暂时存储数据",
+        }, {
+            "id": "Racadamy",
+            "name": "学院",
             "val": "",
-            "type": "textarea",
+            "type": "text",
             "desc": ""
-    } ,{
+        }, {
+            "id": "Rclass",
+            "name": "班级",
+            "val": "",
+            "type": "text",
+            "desc": ""
+        }, {
             "id": "Rwechat",
             "name": "Rwechat",
             "val": "",
             "type": "text",
             "desc": ""
-    }],
+        }, {
+            "id": "R1111",
+            "name": "暂时存储数据",
+            "val": "",
+            "type": "textarea",
+            "desc": ""
+        }],
         "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
-        "icons": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", 
+        "icons": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png",
         "script": "https://github.com/"
-    }
-   ]
-  }
+    }]
+}
