@@ -14,7 +14,7 @@
             "id": "Rtoken",
             "name": "填入access_token",
             "val": "",
-            "type": "textarea",
+            "type": "text",
             "desc": "抓包获取的或者利用扫码登录获取token"
     } , {
             "id": "Rname",
