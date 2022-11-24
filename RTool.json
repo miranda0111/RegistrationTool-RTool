@@ -18,7 +18,7 @@
             "desc": "抓包获取的或者利用扫码登录获取token"
     } , {
             "id": "Rname",
-            "name": "姓名",
+            "name": "姓名", 
             "val": "",
             "type": "text",
             "desc": "名字用@隔开"
@@ -48,7 +48,7 @@
             "desc": ""
     }],
         "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
-        "icons": ["https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", "https://raw.githubusercontent.com/danchaofan12138/danchaofan/main/hbd.png"],
+        "icons": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", 
         "script": "https://github.com/"
     }
    ]
