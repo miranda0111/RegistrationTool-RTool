@@ -1,55 +1,55 @@
 {
     "id": "RT.app.sub",
-    "name": "RT脚本订阅",
-    "author": "@RT",
-    "icon": "https://raw.githubusercontent.com/danchaofan12138/danchaofan/main/hbd.jpeg",
+    "name": "RTool脚本订阅",
+    "author": "@miranda0111",
+    "icon": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png",
     "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
     "apps": [
       {
-        "id": "RTool",
+    "id": "RTurl",
     "name": "报名工具小程序",
-    "keys": ["RTool1"],
-    "author": "@RT",
+    "keys": ["RTurl"],
+    "author": "@miranda0111",
     "settings": [ {
-        "id": "Rtoken",
-        "name": "access_token",
-        "val": "",
-        "type": "textarea",
-        "desc": ""
+            "id": "Rtoken",
+            "name": "填入access_token",
+            "val": "",
+            "type": "textarea",
+            "desc": "抓包获取的或者利用扫码登录获取token"
     } , {
             "id": "Rname",
             "name": "姓名",
             "val": "",
-            "type": "textarea",
-            "desc": ""
+            "type": "text",
+            "desc": "名字用@隔开"
     } , {
             "id": "RID",
             "name": "学号",
             "val": "",
-            "type": "textarea",
+            "type": "text",
             "desc": ""
     },{
             "id": "Rphone",
             "name": "手机号",
             "val": "",
-            "type": "textarea",
+            "type": "text",
             "desc": ""
     } ,{
-        "id": "R1111",
-        "name": "暂时存储数据",
-        "val": "",
-        "type": "textarea",
-        "desc": ""
+            "id": "R1111",
+            "name": "暂时存储数据",
+            "val": "",
+            "type": "textarea",
+            "desc": ""
     } ,{
             "id": "Rwechat",
             "name": "Rwechat",
             "val": "",
-            "type": "textarea",
+            "type": "text",
             "desc": ""
     }],
-                          "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
-                              "icons": ["https://raw.githubusercontent.com/danchaofan12138/danchaofan/main/hbd.png", "https://raw.githubusercontent.com/danchaofan12138/danchaofan/main/hbd.png"],
-                                  "script": ""
+        "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
+        "icons": ["https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", "https://raw.githubusercontent.com/danchaofan12138/danchaofan/main/hbd.png"],
+        "script": "https://github.com/"
     }
    ]
   }
