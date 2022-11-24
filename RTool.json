@@ -8,7 +8,7 @@
       {
     "id": "RTurl",
     "name": "报名工具小程序",
-    "keys": ["RTurl"],
+    "keys": ["RTurl","RToolhd"],
     "author": "@miranda0111",
     "settings": [ {
             "id": "Rtoken",
