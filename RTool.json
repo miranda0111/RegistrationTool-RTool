@@ -7,7 +7,7 @@
     "apps": [{
         "id": "RTurl",
         "name": "报名工具小程序",
-        "keys": ["RTurl", "RToolhd"],
+        "keys": ["RToolurl", "RToolhd"],
         "author": "@miranda0111",
         "descs_html": [
             "使用方式：自己抓包获取相应的字段。多账号用@连接"
