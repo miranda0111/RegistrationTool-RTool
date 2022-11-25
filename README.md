@@ -20,6 +20,8 @@
 
 ### 圈x运行
 
+重写：`https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll url script-request-header https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/RT.js`
+
 圈X重写后，打开报名工具小程序的报名链接即可自动抓取eid、access_token
 以下为在boxjs配置的变量
 
