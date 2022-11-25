@@ -19,12 +19,23 @@
 ## 不详细的教程
 
 ### 圈x运行
-~~~
-以单人版为例，圈X重写后，打开报名工具小程序的报名链接即可抓取eid、access_token，在boxjs配置Rtn、Rts、Rtp，分别有注释说明是啥玩意。然后acadamy、className自己填，只有5项，其他还没写。只有姓名手机号联系方式班级学号学院等关键词才能匹配成功。
-~~~
+
+圈X重写后，打开报名工具小程序的报名链接即可自动抓取eid、access_token
+以下为在boxjs配置的变量
+
+| 变量 / key  | 参考 / value |
+|---------|---------|
+|Rtoken|9a8bb3f233aa4de4b3209b47d5ac0efe（access_token）|
+|Rname|张三|
+|RID|2015223344141（学号）|
+|Rphone|19922556677（手机号）|
+|Racadamy|马克思主义学院|
+|Rclass|23统计9班|
+|Rwechat|123415425125（微信号）|
+|R1111|无用数据存放|
 
 ### 青龙运行
-    青龙运行，请自行适配，自行抓取这个链接https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v3/detail存入环境变量RToolurl和RToolhd，其他同上，不再赘述。
+青龙运行，请自行适配，自行抓取这个链接https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v3/detail存入环境变量RToolurl和RToolhd，其他同上，不再赘述。
 例如：
 | 变量 / key  | 参考 / value |
 |---------|---------|
