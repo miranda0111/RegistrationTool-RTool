@@ -62,7 +62,7 @@
             "desc": ""
         }],
         "repo": "https://github.com/miranda0111/RegistrationTool-RTool.git",
-        "icons": "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png"
+        "icons": ["https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png", "https://pic8.58cdn.com.cn/nowater/webim/big/n_v2bb2752432305489ea5d3defe627e879f.png"],
         "script": "https://github.com/"
     }]
 }
