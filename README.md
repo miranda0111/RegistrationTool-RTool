@@ -55,7 +55,7 @@ hostname = api-x-qunsou.weiyoubot.cn
 | 变量 / key  | 说明 / illustrate | 参考 / value |
 |---------|---------|---------|
 |RToolurl|青龙平台填写可只填写 eid=63wetqwt12341setwe|https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/user_list?eid=63e0a435c086dfe06b23&access_token=9a8bb3f233aa4de4b3209b47d5ac0efe&count=10&info_id=0|
-|RToolhd|青龙平台该请求头可直接复制| {"Referer":"https://servicewechat.com/wxfaa08012777a431e/861/page-frame.html","Connection":"keep-alive","Host":"api-xcx-qunsou.weiyoubot.cn","Accept-Encoding":"gzip,compress,br,deflate","Content-Type":"application/json","User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.29(0x18001d38) NetType/WIFI Language/zh_CN"}|
+|RToolhd|青龙平台该请求头可直接复制|{"Referer":"https://servicewechat.com/wxfaa08012777a431e/861/page-frame.html","Connection":"keep-alive","Host":"api-xcx-qunsou.weiyoubot.cn","Accept-Encoding":"gzip,compress,br,deflate","Content-Type":"application/json","User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.29(0x18001d38) NetType/WIFI Language/zh_CN"}|
 
 自己注意格式！
 

@@ -49,8 +49,8 @@ let invalidindex = 0;
                     console.log(`\n========== 共找到 ${RnameArr.length} 个账号 ==========`)
                     console.log(`这是你的账号数组:\n ${RnameArr}`);
                     await getkey()
-                    if(getmsgArr == 0){
-                        await getkey_key()
+                    if(invalidindex == 1){
+                        await getkey_1() //
                     }
                     await $.wait(5000)
                     for (let index = 0; index < RnameArr.length; index++) {
@@ -159,7 +159,7 @@ function getkey(timeout = 0) {
                 // data = JSON.stringify(data)
                 data = JSON.parse(data)
                 if(data.msg == "invalid access_token"){
-                    console.log(`\ntoken失效`)
+                    console.log(`\n重写获取的token失效`)
                     invalidindex = 1;
                 }else {
                     RtokenArr[0] = Rtoken
@@ -184,25 +184,35 @@ function getkey(timeout = 0) {
     })
 }
 //有口令得
-function getkey_key(timeout = 0) {
+function getkey_1(timeout = 0) {
     return new Promise((resolve) => {
+        _eid = RToolurl.match(/eid=(.*?)&/)[1];
+        // _referer = RToolurl.match(/referer=(\S*)/)[1];
+        Rtoken = RToolurl.match(/access_token=(.*?)&/)[1];
         let url = {
-            url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/req_detail?access_token=${RtokenArr[0]}&eid=${_eid}`,
+            // url: RToolurl,
+            url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/detail?eid=${_eid}&access_token=${RtokenArr[0]}&admin=0&from=detail&referer=`,
             headers: JSON.parse(RToolhd),
         }
         $.get(url, async (err, resp, data) => {
             try {
                 // data = JSON.stringify(data)
                 data = JSON.parse(data)
+                if(data.msg == "invalid access_token"){
+                    console.log(`\ntoken失效`)
+                    invalidindex = 1;
+                }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
-                console.log(`\n第二种获取方式：该报名表格含有${getmsgArr}条数据~`)
-                for (let i = 0; i < getmsgArr; i++) {
-                    // let mark = false;
-                    msg_field_name[i] = getmsg[i].field_name;
-                    msg_field_key[i] = getmsg[i].field_key;
-                    }
-                console.log(msg_field_name);
+                console.log(`\n第一种获取方式：该报名表格含有${getmsgArr}条数据~`)
+                    for (let i = 0; i < getmsgArr; i++) {
+                        msg_field_name[i] = getmsg[i].field_name;
+                        msg_field_key[i] = getmsg[i].field_key;
+                        msg_type_text[i] = getmsg[i].type_text;
+                    // console.log(msg_field_name);
+                    // console.log(msg_field_key);
+                }
+                console.log(`该表格数据分别是：${msg_field_name}`);
                 console.log(msg_field_key);
             } catch (e) {
             } finally {
