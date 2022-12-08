@@ -40,7 +40,7 @@ hostname = api-x-qunsou.weiyoubot.cn
 |Rname|名字|张三|
 |RID|学号|2015223344141|
 |Rphone|手机号|19922556677|
-|Racadamy|学院（有需要再填）|马克思主义学院|
+|Racadamy|学院|马克思主义学院|
 |Rclass|本脚本不会盗用个人信息|23统计9班|
 |Rwechat|源码公开|123415425125（微信号）|
 |EnableOddEven|启用奇偶数报名，1为启用，0为关闭，默认为0|0|
