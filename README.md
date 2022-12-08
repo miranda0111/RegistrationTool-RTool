@@ -91,6 +91,8 @@ hostname = api-x-qunsou.weiyoubot.cn
 
 ## 特别鸣谢:
 
+如有大问题请＋Q群联系：491092107
+
 * [@whyour](https://github.com/whyour/qinglong)「青龙」
 * [@xl2101200](https://github.com/xl2101200/-/)「Tom」
 * [@yml2213](https://github.com/yml2213/javascript)「yml2213」
