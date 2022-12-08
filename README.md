@@ -64,12 +64,20 @@ hostname = api-x-qunsou.weiyoubot.cn
 ## 日志和环境变量
 ### 青龙
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/ql_env.png)
+---
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/ql_log1.png)
 
 ### 圈x
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_boxjs.jpg)
+---
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log1.jpg)
+---
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log2.jpg)
+
+### GitHub Actions
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/actions_env.png)
+---
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/actions_log.png)
 
 ## 特别鸣谢:
 
