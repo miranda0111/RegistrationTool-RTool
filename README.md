@@ -61,6 +61,16 @@ hostname = api-x-qunsou.weiyoubot.cn
 
 附上json常用工具`https://www.json.cn/`和`https://www.songluyi.com/ChangeHeaderToDict/`
 
+## 日志和环境变量
+### 青龙
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/ql_env.png)
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/ql_log1.png)
+
+### 圈x
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_boxjs.jpg)
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log1.jpg)
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log2.jpg)
+
 ## 特别鸣谢:
 
 * [@whyour](https://github.com/whyour/qinglong)「青龙」
