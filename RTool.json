@@ -55,6 +55,18 @@
             "type": "text",
             "desc": ""
         }, {
+            "id": "EnableOddEven",
+            "name": "启用奇偶数报名",
+            "val": "",
+            "type": "number",
+            "desc": "1为启用，0为关闭"
+        }, {
+            "id": "oddnum",
+            "name": "奇数报名",
+            "val": "",
+            "type": "number",
+            "desc": "0为奇数，1为偶数"
+        }, {
             "id": "R1111",
             "name": "暂时存储数据",
             "val": "",

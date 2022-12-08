@@ -1,4 +1,6 @@
 const $ = new Env('Rtool多人版');
+let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
+let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
 status = (status = ($.getval("RToolstatus") || "1")) > 1 ? `${status}` : "";
 let RToolurl = $.getdata('RToolurl')
@@ -21,7 +23,10 @@ let getmsgArr = "";
 let msg_field_name = [];
 let msg_field_key = []; 
 let msg_field_value = [];
+let msg_type_text = [];
+let msg_origin_field_value = [];
 let invalidindex = 0;
+
 
 !(async () => {
     if (typeof $request !== "undefined") {
@@ -58,23 +63,28 @@ let invalidindex = 0;
                         Rwechat = RwechatArr[index];
                         Racadamy = RacadamyArr[index];
                         Rclass = RclassArr[index];
-                    await $.wait(700)
-                    // if(invalidindex ==0){
-                    //     await sendinfo() //send info
-                    // }
-                    
-                    await checkCount()//判断奇偶数，给count赋值，测试时注释
-                    for(let ii = 0; ii < 100; ii++) {
-                        await checkCount()
-                        if(count % 2 == 0){
-                            console.log("报名奇数的")
-                            if(invalidindex ==0){
-                                await sendinfo() 
+                        await $.wait(700)
+                        if(EnableOddEven == 0){
+                            if(invalidindex == 0){
+                                await sendinfo() //send info
                             }
-                            break
-                        }else console.log("准备下次报名")
-                    }
-                    
+                        }else {
+                            await checkCount()//判断奇偶数，给count赋值，测试时注释
+                            for(let ii = 0; ii < 100; ii++) {
+                                await checkCount()
+                                if(oddnum == 0){
+                                    console.log("本次报名奇数的")
+                                }else {
+                                    console.log("本次报名偶数的")
+                                }
+                                if(count % 2 == oddnum){
+                                    if(invalidindex == 0){
+                                        await sendinfo() 
+                                    }
+                                    break
+                                }else console.log("准备下次报名~~~")
+                            }
+                        } 
                     }
     }
 })()
@@ -138,9 +148,10 @@ function getkey(timeout = 0) {
     return new Promise((resolve) => {
         _eid = RToolurl.match(/eid=(.*?)&/)[1];
         // _referer = RToolurl.match(/referer=(\S*)/)[1];
+        Rtoken = RToolurl.match(/access_token=(.*?)&/)[1];
         let url = {
             // url: RToolurl,
-            url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/detail?eid=${_eid}&access_token=${RtokenArr[0]}&admin=0&from=detail&referer=`,
+            url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/detail?eid=${_eid}&access_token=${Rtoken}&admin=0&from=detail&referer=`,
             headers: JSON.parse(RToolhd),
         }
         $.get(url, async (err, resp, data) => {
@@ -150,6 +161,8 @@ function getkey(timeout = 0) {
                 if(data.msg == "invalid access_token"){
                     console.log(`\ntoken失效`)
                     invalidindex = 1;
+                }else {
+                    RtokenArr[0] = Rtoken
                 }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
@@ -157,6 +170,7 @@ function getkey(timeout = 0) {
                     for (let i = 0; i < getmsgArr; i++) {
                         msg_field_name[i] = getmsg[i].field_name;
                         msg_field_key[i] = getmsg[i].field_key;
+                        msg_type_text[i] = getmsg[i].type_text;
                     // console.log(msg_field_name);
                     // console.log(msg_field_key);
                 }
@@ -299,9 +313,9 @@ function sendinfo(timeout = 0) {
             }else if(checkContains(getStrCN(msg_field_name[i]),"联系方式")){//联系方式
                 msg_field_value[i] = Rphone
             }else if(checkContains(getStrCN(msg_field_name[i]),"班级")){//班级
-                msg_field_value[i] = RclassArr
+                msg_field_value[i] = Rclass
             }else if(checkContains(getStrCN(msg_field_name[i]),"班")){//班级
-                msg_field_value[i] = RclassArr
+                msg_field_value[i] = Rclass
             }else if(checkContains(getStrCN(msg_field_name[i]),"学号")){//学号
                 msg_field_value[i] = RID
             }else if(checkContains(getStrCN(msg_field_name[i]),"工号")){//工号
@@ -312,16 +326,28 @@ function sendinfo(timeout = 0) {
                 msg_field_value[i] = Racadamy
             }else if(checkContains(getStrCN(msg_field_name[i]),"微信")){//微信
                 msg_field_value[i] = Rwechat
+            }else if(msg_type_text[i] == "单张图片"){
+
             }else {
                 msg_field_value[i] = ''
                 index = 0
                 console.log("还有东西填？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？")
             }
-            _data.info[i] = {
-                "field_name":msg_field_name[i],
-                "field_value":msg_field_value[i],
-                "field_key":msg_field_key[i],
-                "ignore":0
+            if(msg_type_text[i] == "单张图片"){
+                _data.info[i] = {
+                    "field_name":msg_field_name[i],
+                    "field_value":"https:\/\/pic9.58cdn.com.cn\/nowater\/webim\/big\/n_v26a4bf4b5be8d49b39eada11d356a3847.png",
+                    "origin_field_value":"https:\/\/pic9.58cdn.com.cn\/nowater\/webim\/big\/n_v26a4bf4b5be8d49b39eada11d356a3847.png",
+                    "field_key":msg_field_key[i],
+                    "ignore":0
+                }
+            }else {
+                _data.info[i] = {
+                    "field_name":msg_field_name[i],
+                    "field_value":msg_field_value[i],
+                    "field_key":msg_field_key[i],
+                    "ignore":0
+                }
             }
             console.log(`info数据${JSON.stringify(_data.info)}`)
         }
