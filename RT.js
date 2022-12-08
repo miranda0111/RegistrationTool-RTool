@@ -3,8 +3,10 @@ let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableO
 let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
 status = (status = ($.getval("RToolstatus") || "1")) > 1 ? `${status}` : "";
-let RToolurl = $.getdata('RToolurl')
-let RToolhd = $.getdata('RToolhd')
+//let RToolurl = $.getdata('RToolurl')
+let RToolurl = ($.isNode() ? process.env.RToolurl : $.getdata('RToolurl')) || '';
+//let RToolhd = $.getdata('RToolhd')
+let RToolhd = ($.isNode() ? process.env.RToolhd : $.getdata('RToolhd')) || '';
 let RTurl = $.getdata('RTurl')
 let Rname = ($.isNode() ? process.env.Rname : $.getdata('Rname')) || '';
 let RID = ($.isNode() ? process.env.RID : $.getdata('RID')) || '';
