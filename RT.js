@@ -209,7 +209,7 @@ function getkey_1(timeout = 0) {
                 }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
-                console.log(`\n第一种获取方式：该报名表格含有${getmsgArr}条数据~`)
+                console.log(`\n第二种获取方式：该报名表格含有${getmsgArr}条数据~`)
                     for (let i = 0; i < getmsgArr; i++) {
                         msg_field_name[i] = getmsg[i].field_name;
                         msg_field_key[i] = getmsg[i].field_key;
