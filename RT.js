@@ -227,7 +227,7 @@ function getkey_1(timeout = 0) {
 function checkCount(timeout = 0){
     return new Promise((resolve) => {
         let url = {
-            url: RToolurl,
+            url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v1/detail?eid=${_eid}&access_token=${RtokenArr[0]}&admin=0&from=detail&referer=`,
             headers: JSON.parse(RToolhd),
         }
         $.get(url, async (err, resp, data) => {
