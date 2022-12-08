@@ -201,6 +201,8 @@ function getkey_1(timeout = 0) {
                 if(data.msg == "invalid access_token"){
                     console.log(`\ntoken失效`)
                     invalidindex = 1;
+                }else {
+                    invalidindex = 0;
                 }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
