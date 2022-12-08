@@ -62,6 +62,19 @@ hostname = api-x-qunsou.weiyoubot.cn
 
 附上json常用工具`https://www.json.cn/`和`https://www.songluyi.com/ChangeHeaderToDict/`
 
+### GitHub Actions运行
+
+- 打开链接`https://github.com/miranda0111/RegistrationTool-RTool.git`
+- `miranda0111/RegistrationTool-RTool`这里的下方位置点击`Settings`
+- 从左边目录找到`Secrets`点击后出现`Actions`，新的窗口那找绿色按钮`New repository secret`，然后看到有`name`和`Secret`，填入环境变量，例如第一个`name`方框下填`Rname`，`Secret`方框下填`张三`
+- 填完以后，点击`Add secret`保存
+- 重复上述步骤填写完毕环境变量
+
+- `miranda0111/RegistrationTool-RTool`这里的下方位置点击`Actions`
+- 左边目录找到`报名`的按钮
+- `报名`的按钮同一水平方向的右边点击`Run workflow`
+- 按F5刷新页面即可看到运行，点击图标带黄色的按钮即可看到日志
+
 ## 日志和环境变量
 ### 青龙
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/ql_env.png)
