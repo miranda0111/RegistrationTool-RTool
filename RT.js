@@ -51,6 +51,7 @@ let invalidindex = 0;
                     console.log(`\n========== 共找到 ${RnameArr.length} 个账号 ==========`)
                     console.log(`这是你的账号数组:\n ${RnameArr}`);
                     await getkey()
+                    await $.wait(1100)
                     if(invalidindex == 1){
                         await getkey_1() //
                     }
