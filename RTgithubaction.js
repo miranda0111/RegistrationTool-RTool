@@ -177,8 +177,10 @@ function getkey(timeout = 0) {
                     // console.log(msg_field_name);
                     // console.log(msg_field_key);
                 }
-                console.log(`该表格数据分别是：${msg_field_name}`);
-                console.log(msg_field_key);
+                console.log(`\n该表格数据分别是：${msg_field_name}`);
+                console.log("\n该表给对应key为：" + msg_field_key);
+                let kouling = data.data.token
+                console.log(`\n口令为：${kouling}`)
             } catch (e) {
             } finally {
                 resolve()
@@ -186,7 +188,7 @@ function getkey(timeout = 0) {
         }, timeout)
     })
 }
-//有口令得
+
 function getkey_1(timeout = 0) {
     return new Promise((resolve) => {
         _eid = RToolurl.match(/eid=(.*?)&/)[1];
@@ -217,8 +219,10 @@ function getkey_1(timeout = 0) {
                     // console.log(msg_field_name);
                     // console.log(msg_field_key);
                 }
-                console.log(`该表格数据分别是：${msg_field_name}`);
-                console.log(msg_field_key);
+                console.log(`\n该表格数据分别是：${msg_field_name}`);
+                console.log("\n该表给对应key为：" + msg_field_key);
+                let kouling = data.data.token
+                console.log(`\n口令为：${kouling}`)
             } catch (e) {
             } finally {
                 resolve()
