@@ -70,7 +70,7 @@ let invalidindex = 0;
                         if(EnableOddEven == 0){
                             if(invalidindex == 0){
                                 await sendinfo() //send info
-                            }
+                            }else console.log("\n请检查token！！！")
                         }else {
                             await checkCount()//判断奇偶数，给count赋值，测试时注释
                             for(let ii = 0; ii < 100; ii++) {
@@ -83,7 +83,7 @@ let invalidindex = 0;
                                 if(count % 2 == oddnum){
                                     if(invalidindex == 0){
                                         await sendinfo() 
-                                    }
+                                    }else console.log("\n请检查token！！！")
                                     break
                                 }else console.log("准备下次报名~~~")
                             }
@@ -169,7 +169,7 @@ function getkey(timeout = 0) {
                 }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
-                console.log(`\n第一种获取方式：该报名表格含有${getmsgArr}条数据~`)
+                console.log(`\n该报名表格含有${getmsgArr}条数据~`)
                     for (let i = 0; i < getmsgArr; i++) {
                         msg_field_name[i] = getmsg[i].field_name;
                         msg_field_key[i] = getmsg[i].field_key;
@@ -202,14 +202,14 @@ function getkey_1(timeout = 0) {
                 // data = JSON.stringify(data)
                 data = JSON.parse(data)
                 if(data.msg == "invalid access_token"){
-                    console.log(`\ntoken失效`)
+                    console.log(`\n环境变量填写的token失效`)
                     invalidindex = 1;
                 }else {
                     invalidindex = 0;
                 }
                 let getmsg = data.data.req_info
                 getmsgArr = getmsg.length
-                console.log(`\n第二种获取方式：该报名表格含有${getmsgArr}条数据~`)
+                console.log(`\n该报名表格含有${getmsgArr}条数据~`)
                     for (let i = 0; i < getmsgArr; i++) {
                         msg_field_name[i] = getmsg[i].field_name;
                         msg_field_key[i] = getmsg[i].field_key;
