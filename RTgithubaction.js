@@ -1,4 +1,5 @@
 const $ = new Env('Rtool多人版');
+let waittime = 5000 //等待报名时间5000ms
 let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
 let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
@@ -51,11 +52,10 @@ let invalidindex = 0;
                     console.log(`\n========== 共找到 ${RnameArr.length} 个账号 ==========`)
                     console.log(`这是你的账号数组:\n ${RnameArr}`);
                     await getkey()
-                    await $.wait(1100)
                     if(invalidindex == 1){
                         await getkey_1() //
                     }
-                    await $.wait(5000)
+                    await $.wait(waittime)
                     for (let index = 0; index < RnameArr.length; index++) {
                         let num = index + 1;
                         console.log(`\n========== 共找到 ${num} 个账号 ==========`)
