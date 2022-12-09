@@ -11,6 +11,8 @@
 >克己，慎独，守心，明性。 
 ---
 Github访问慢[请点击这](https://www.dogfight360.com/blog/475/)
+
+推荐使用同类脚本[请点击这](https://github.com/ygxiuming/Lecture-registration.git)
 ## 工具：
 
 ~~~
