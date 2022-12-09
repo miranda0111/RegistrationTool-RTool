@@ -84,6 +84,7 @@ hostname = api-x-qunsou.weiyoubot.cn
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_boxjs.png)
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log1.png)
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_log2.png)
+![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/qx_invalid.png)
 
 ### GitHub Actions
 ![](https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/main/assets/actions_env.png)
