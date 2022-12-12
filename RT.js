@@ -388,6 +388,8 @@ function sendinfo(timeout = 0) {
                 msg_field_value[i] = Rwechat
             }else if(msg_type_text[i] == "单张图片"){
                 // uploadimg()
+            }else if(msg_type_text[i] == "描述"){
+                // uploadimg()
             }else {
                 msg_field_value[i] = ''
                 index = 0
