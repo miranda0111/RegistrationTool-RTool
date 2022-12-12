@@ -393,14 +393,21 @@ function sendinfo(timeout = 0) {
                 index = 0
                 console.log("还有东西填？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？")
             }
-            if(msg_type_text[i] == "单张图片"){
+            if(msg_type_text[i] == "单张图片"){   
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
-                    "field_value":"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg",
-                    "origin_field_value":"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg",
+                    "field_value":[
+
+                    ],
+                    "origin_field_value":[
+
+                    ],
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
+                _data.info[i].field_value[0] = "https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
+                _data.info[i].origin_field_value[0] = "https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
+                //"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
             }else {
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
