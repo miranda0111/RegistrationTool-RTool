@@ -405,8 +405,8 @@ function sendinfo(timeout = 0) {
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
-                _data.info[i].field_value[0] = "https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
-                _data.info[i].origin_field_value[0] = "https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
+                _data.info[i].field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/97222522e9db4d98b523cec994487cf7.jpg"
+                _data.info[i].origin_field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/97222522e9db4d98b523cec994487cf7.jpg"
                 //"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
             }else {
                 _data.info[i] = {
@@ -427,7 +427,7 @@ function sendinfo(timeout = 0) {
             }
             $.post(url, async (err, resp, data) => {
                 try {
-                    // console.log(`\n\n开始【Rtool多人版${data}】`)
+                    console.log(data)
                     data = JSON.parse(data)
                     console.log(data.data.verified)
                     if (data.data.verified == 1) {
