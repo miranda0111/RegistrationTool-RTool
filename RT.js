@@ -407,8 +407,8 @@ function sendinfo(timeout = 0) {
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
-                _data.info[i].field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/97222522e9db4d98b523cec994487cf7.jpg"
-                _data.info[i].origin_field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/97222522e9db4d98b523cec994487cf7.jpg"
+                _data.info[i].field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/2f91fb13cf424c28b62c70f4507c5b8f.jpg"
+                _data.info[i].origin_field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/2f91fb13cf424c28b62c70f4507c5b8f.jpg"
                 //"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
             }else {
                 _data.info[i] = {
