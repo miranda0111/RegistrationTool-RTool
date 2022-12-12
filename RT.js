@@ -70,7 +70,7 @@ let invalidindex = 0;
                         Rwechat = RwechatArr[index];
                         Racadamy = RacadamyArr[index];
                         Rclass = RclassArr[index];
-                        await $.wait(700)
+                        await $.wait(1200)
                         if(EnableOddEven == 0){
                             if(invalidindex == 0){
                                 await sendinfo() //send info
