@@ -183,6 +183,7 @@ function getkey(timeout = 0) {
                 }
                 console.log(`\n该表格数据分别是：${msg_field_name}`);
                 console.log("\n该表给对应key为：" + msg_field_key);
+                console.log(`\n该表格对应文本类型：${msg_type_text}`);
                 let kouling = data.data.token
                 console.log(`\n口令为：${kouling}`)
             } catch (e) {
@@ -225,6 +226,7 @@ function getkey_1(timeout = 0) {
                 }
                 console.log(`\n该表格数据分别是：${msg_field_name}`);
                 console.log("\n该表给对应key为：" + msg_field_key);
+                console.log(`\n该表格对应文本类型：${msg_type_text}`);
                 let kouling = data.data.token
                 console.log(`\n口令为：${kouling}`)
             } catch (e) {
