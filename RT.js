@@ -1,3 +1,7 @@
+const axios = require('axios');
+const FormData = require('form-data');
+const request = require('request');
+
 const $ = new Env('Rtool多人版');
 let waittime = 5000 //等待报名时间5000ms
 let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
@@ -27,7 +31,7 @@ let msg_field_name = [];
 let msg_field_key = []; 
 let msg_field_value = [];
 let msg_type_text = [];
-let msg_origin_field_value = [];
+let msg_origin_field_value = '';
 let invalidindex = 0;
 
 
@@ -292,6 +296,43 @@ function checkContains(msg, data){
     return index
 }
 
+async function uploadimg() {
+    return new Promise((resolve) => {
+    let data = new FormData();
+    data.append('biz_id', '6396bda5fa845a4ba7e48e77');
+    data.append('file', request('https://www.baidu.com/img/bd_logo1.png'));
+
+    let config = {
+        method: 'post',
+        url: 'https://api-xcx-qunsou.weiyoubot.cn/xcx/image/v2/upload',
+        headers: { 
+          'Host': 'api-xcx-qunsou.weiyoubot.cn', 
+          'Accept-Encoding': 'gzip,compress,br,deflate', 
+          'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.29(0x18001d38) NetType/WIFI Language/zh_CN', 
+          'Content-Type': 'multipart/form-data; boundary=WABoundary+A405E0FFAB7D144AWA', 
+          'Referer': 'https://servicewechat.com/wxfaa08012777a431e/871/page-frame.html', 
+          'Cookie': 'tgw_l7_route=05fc80284c7b2840a1683128310f0d09', 
+          ...data.getHeaders()
+        },
+        data : data
+    };
+    axios(config)
+    .then(function (response) {
+        // data = JSON.parse(data)
+        // console.log(JSON.stringify(response.data));
+        let msgdata = response.data
+        if (msgdata.msg == "OK"){
+            msg_origin_field_value = msgdata.data.url
+            console.log("\n上传图片成功: " + msg_origin_field_value)
+        } 
+    
+    })
+    .catch(function (error) {
+        console.log(error);
+    }); 
+}) 
+}
+
 //版块
 function sendinfo(timeout = 0) {
     return new Promise((resolve) => {
@@ -346,7 +387,7 @@ function sendinfo(timeout = 0) {
             }else if(checkContains(getStrCN(msg_field_name[i]),"微信")){//微信
                 msg_field_value[i] = Rwechat
             }else if(msg_type_text[i] == "单张图片"){
-
+                uploadimg()
             }else {
                 msg_field_value[i] = ''
                 index = 0
@@ -355,8 +396,8 @@ function sendinfo(timeout = 0) {
             if(msg_type_text[i] == "单张图片"){
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
-                    "field_value":"https:\/\/pic9.58cdn.com.cn\/nowater\/webim\/big\/n_v26a4bf4b5be8d49b39eada11d356a3847.png",
-                    "origin_field_value":"https:\/\/pic9.58cdn.com.cn\/nowater\/webim\/big\/n_v26a4bf4b5be8d49b39eada11d356a3847.png",
+                    "field_value":msg_origin_field_value,
+                    "origin_field_value":msg_origin_field_value,
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
