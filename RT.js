@@ -300,7 +300,7 @@ async function uploadimg() {
     return new Promise((resolve) => {
     let data = new FormData();
     data.append('biz_id', '6396bda5fa845a4ba7e48e77');
-    data.append('file', request('https://www.baidu.com/img/bd_logo1.png'));
+    data.append('file', $request('https://www.baidu.com/img/bd_logo1.png'));
 
     let config = {
         method: 'post',
