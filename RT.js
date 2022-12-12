@@ -387,7 +387,7 @@ function sendinfo(timeout = 0) {
             }else if(checkContains(getStrCN(msg_field_name[i]),"微信")){//微信
                 msg_field_value[i] = Rwechat
             }else if(msg_type_text[i] == "单张图片"){
-                uploadimg()
+                // uploadimg()
             }else {
                 msg_field_value[i] = ''
                 index = 0
