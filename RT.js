@@ -396,8 +396,8 @@ function sendinfo(timeout = 0) {
             if(msg_type_text[i] == "单张图片"){
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
-                    "field_value":["https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"],
-                    "origin_field_value":["https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"],
+                    "field_value":"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg",
+                    "origin_field_value":"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg",
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
