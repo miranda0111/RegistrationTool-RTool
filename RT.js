@@ -4,6 +4,7 @@
 
 const $ = new Env('Rtool多人版');
 let waittime = 10 //等待报名时间
+let today_img = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || "";
 let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
 let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
@@ -33,7 +34,6 @@ let msg_field_value = [];
 let msg_type_text = [];
 let msg_origin_field_value = '';
 let invalidindex = 0;
-
 
 !(async () => {
     if (typeof $request !== "undefined") {
@@ -409,9 +409,10 @@ function sendinfo(timeout = 0) {
                     "field_key":msg_field_key[i],
                     "ignore":0
                 }
-                _data.info[i].field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/2f91fb13cf424c28b62c70f4507c5b8f.jpg"
-                _data.info[i].origin_field_value[0] = "https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/2f91fb13cf424c28b62c70f4507c5b8f.jpg"
+                _data.info[i].field_value[0] = today_img
+                _data.info[i].origin_field_value[0] = today_img
                 //"https:\/\/cdn-xcx-qunsou.weiyoubot.cn\/xcx\/2022-12-12\/97222522e9db4d98b523cec994487cf7.jpg"
+                // https://cdn-xcx-qunsou.weiyoubot.cn/xcx/2022-12-12/2f91fb13cf424c28b62c70f4507c5b8f.jpg
             }else {
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
