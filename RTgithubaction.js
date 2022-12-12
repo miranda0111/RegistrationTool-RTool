@@ -396,11 +396,23 @@ function sendinfo(timeout = 0) {
             if(msg_type_text[i] == "单张图片"){
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
-                    "field_value":[msg_origin_field_value],
-                    "origin_field_value":[msg_origin_field_value],
+                    "field_value":[
+
+                    ],
+                    "origin_field_value":[
+
+                    ],
                     "field_key":msg_field_key[i],
                     "ignore":0
+                // _data.info[i] = {
+                //     "field_name":msg_field_name[i],
+                //     "field_value":[msg_origin_field_value],
+                //     "origin_field_value":[msg_origin_field_value],
+                //     "field_key":msg_field_key[i],
+                //     "ignore":0
                 }
+                _data.info[i].field_value[0] = msg_origin_field_value
+                _data.info[i].origin_field_value[0] = msg_origin_field_value
             }else {
                 _data.info[i] = {
                     "field_name":msg_field_name[i],
