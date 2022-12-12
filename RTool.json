@@ -55,6 +55,12 @@
             "type": "text",
             "desc": ""
         }, {
+            "id": "today_img",
+            "name": "上传图片，必须为当天填写的",
+            "val": "",
+            "type": "text",
+            "desc": "上传图片，必须为当天填写的"
+        }, {
             "id": "EnableOddEven",
             "name": "启用奇偶数报名",
             "val": "",
