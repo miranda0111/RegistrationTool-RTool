@@ -4,7 +4,7 @@
 
 const $ = new Env('Rtool多人版');
 let waittime = 10 //等待报名时间
-let today_img = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || "";
+let today_img = ($.isNode() ? process.env.today_img: $.getdata('today_img')) || "";
 let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
 let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
