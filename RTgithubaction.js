@@ -3,7 +3,7 @@ const FormData = require('form-data');
 const request = require('request');
 
 const $ = new Env('Rtool多人版');
-let waittime = 5000 //等待报名时间5000ms
+let waittime = 100 //等待报名时间5000ms
 let EnableOddEven = ($.isNode() ? process.env.EnableOddEven : $.getdata('EnableOddEven')) || 0;  //启用奇偶数报名，1 为启用
 let oddnum = ($.isNode() ? process.env.oddnum : $.getdata('oddnum')) || 0;//奇数号
 let status;
@@ -183,6 +183,9 @@ function getkey(timeout = 0) {
                 }
                 console.log(`\n该表格数据分别是：${msg_field_name}`);
                 console.log("\n该表给对应key为：" + msg_field_key);
+
+console.log(`\n该表格对应文本类型：${msg_type_text}`);
+
                 let kouling = data.data.token
                 console.log(`\n口令为：${kouling}`)
             } catch (e) {
@@ -225,6 +228,9 @@ function getkey_1(timeout = 0) {
                 }
                 console.log(`\n该表格数据分别是：${msg_field_name}`);
                 console.log("\n该表给对应key为：" + msg_field_key);
+
+console.log(`\n该表格对应文本类型：${msg_type_text}`);
+
                 let kouling = data.data.token
                 console.log(`\n口令为：${kouling}`)
             } catch (e) {
@@ -388,6 +394,10 @@ function sendinfo(timeout = 0) {
                 msg_field_value[i] = Rwechat
             }else if(msg_type_text[i] == "单张图片"){
                 uploadimg()
+
+    }else if(msg_type_text[i] == "描述"){
+                // uploadimg()
+
             }else {
                 msg_field_value[i] = ''
                 index = 0
