@@ -421,9 +421,9 @@ function sendinfo(timeout = 0) {
                     "ignore":0
                 }
             }
-            console.log(`info数据${JSON.stringify(_data.info)}`)
+            //console.log(`info数据${JSON.stringify(_data.info)}`)
         }
-        // console.log(`body数据${JSON.stringify(_data)}`)
+        console.log(`body数据${JSON.stringify(_data)}`)
         if(index == 1){
             let url = {
                 url: `https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v5/enroll`,
