@@ -207,11 +207,18 @@ def get_optioninfo(eid,token):
                     field_value = UserInfo[field_name]
                     if field_name == '学院' and type_text == '单项选择':#学院有单项选择题
                         options = reqinfo[i]['new_options']
-                        for j in range(len(options)):#学院选项
+                        c = 0
+                        for j in range(len(options)):#学院选项值
                             if options[j]['value'] == Reg_Exp(UserInfo[field_name]):#学院都是中文吧？
                                 new_field_value = options[j]['key']   
                             else:
-                                print('这。。。如果学院都不匹配的话，手抢吧')
+                                c += 1
+                        if c == len(options):
+                            print('这。。。如果学院都不匹配的话，手抢吧!脚本暂停')
+                            new_field_value = '37515'
+                            Send_index = 0
+                            break
+                            
                 else:
                     field_value = UserInfo['未找到']
                     Send_index = 0
