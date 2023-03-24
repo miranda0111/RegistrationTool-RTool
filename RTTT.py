@@ -28,7 +28,7 @@ import random
 
 Script_Name = "报名工具"
 Name_Pinyin = "RTTT"
-Script_Change = "优化"
+Script_Change = "优化,官方链接检测更新"
 Script_Version = "1.5.1"
 
 ####################################请勿动以下部分####################################
@@ -339,12 +339,17 @@ class myThread(threading.Thread):
 
 def last_version(name, mold):
     url = ''
+    # name ='RTTT'
+    # mold =1
     if mold == 1:
-        url = f"https://gitee.com/miranda0111/baomingongju/raw/master/{name}.py"
+        url = f"https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/master/{name}.py"
     try:
         _url = url
-        _headers = {}
-        resp = requests.get(url=_url, headers=_headers, verify=True)
+        _headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+
+            }
+        resp = requests.get(url=_url, headers=_headers, verify=False)
         result = resp.text
         resp.close()
         r = re.compile(r'Script_Version = "(.*?)"')
@@ -359,7 +364,7 @@ def last_version(name, mold):
 if __name__ =='__main__':
     # multiprocessing.freeze_support()
     # requests.packages.urllib3.disable_warnings()
-    ssl._create_default_https_context = ssl._create_unverified_context
+    # ssl._create_default_https_context = ssl._create_unverified_context
     origin_version = last_version(Name_Pinyin, 1)
     print(f"本地脚本: {Script_Version}\n远程仓库版本: {origin_version}")
     if str(Script_Version) == str(origin_version):
