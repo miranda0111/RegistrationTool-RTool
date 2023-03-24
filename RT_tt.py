@@ -17,29 +17,21 @@ import qrcode
 import requests
 import urllib.request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
+import ssl
 import _thread
 import threading
 import re
 import pandas as pd
 import random
+# import multiprocessing
+###################################################################################
 
-UserInfo= {},
-ClassEid = []
-ClassList = {}
-InfoList=[]
-Send_index = 1
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
-    "Accept": "*/*",
-    "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
-    "Origin": "http://baominggongju.com",
-    "Connection": "keep-alive",
-    "Referer": "http://baominggongju.com/",
-    "Sec-Fetch-Dest": "empty",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Site": "cross-site",
-}
+Script_Name = "报名工具"
+Name_Pinyin = "RTTT"
+Script_Change = "优化"
+Script_Version = "1.5.1"
 
+####################################请勿动以下部分####################################
 def ReadInfo():
     print("##############################参数设置模块###############################")
     df = pd.read_excel('./参数.xlsx', usecols=['参数标题', '参数内容'])# 读取excel文件
@@ -156,11 +148,12 @@ def upload_pic(eid):
             "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.33(0x18002128) NetType/4G Language/zh_CN",
             "Referer":"https//servicewechat.com/wxfaa08012777a431e/904/page-frame.html"
         }
+    boundarys = ''.join(random.sample('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', 16))
     multipart_encoder=MultipartEncoder(
             fields={
                     'biz_id': eid,'file': (filename,open('./'+filename,'rb'),'image/jpeg')
                 },
-            boundary='----WebKitFormBoundaryJ2aGzfsg35YqeT7X')
+            boundary='----WebKitFormBoundary{boundarys}')
     headers["Content-Type"]=multipart_encoder.content_type
     response = requests.request("POST", url, headers=headers, data=multipart_encoder)
     ret = response.json()
@@ -303,8 +296,8 @@ def clicked_button(token,index,start,num):
                         print('线程', num , '（', ClassList[ClassEid[index]], '）:', ret)
                         # print(ret)
                         time.sleep(0.7)
-                        # break
-                        continue
+                        break
+                        # continue
                 except requests.exceptions.RequestException as e:
                     # print(e)
                     print('线程', num , '（', ClassList[ClassEid[index]], '）:',e)
@@ -344,8 +337,52 @@ class myThread(threading.Thread):
     def __del__(self):
         print (self.name,"线程结束！")
 
+def last_version(name, mold):
+    url = ''
+    if mold == 1:
+        url = f"https://gitee.com/miranda0111/baomingongju/raw/master/{name}.py"
+    try:
+        _url = url
+        _headers = {}
+        resp = requests.get(url=_url, headers=_headers, verify=True)
+        result = resp.text
+        resp.close()
+        r = re.compile(r'Script_Version = "(.*?)"')
+        _data = r.findall(result)
+        if not _data:
+            return "出现未知错误 ,请稍后重试!"
+        else:
+            return _data[0]
+    except Exception as err:
+        print(err)
 # In[]
 if __name__ =='__main__':
+    # multiprocessing.freeze_support()
+    # requests.packages.urllib3.disable_warnings()
+    ssl._create_default_https_context = ssl._create_unverified_context
+    origin_version = last_version(Name_Pinyin, 1)
+    print(f"本地脚本: {Script_Version}\n远程仓库版本: {origin_version}")
+    if str(Script_Version) == str(origin_version):
+        print(f"脚本版本一致，完成内容: {Script_Change}")
+    else:
+        print('发现版本更新！请尽快更新！📌 📌 📌 \n')
+        print(f"更新内容: {Script_Change}")
+    UserInfo= {},
+    ClassEid = []
+    ClassList = {}
+    InfoList=[]
+    Send_index = 1
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
+        "Accept": "*/*",
+        "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+        "Origin": "http://baominggongju.com",
+        "Connection": "keep-alive",
+        "Referer": "http://baominggongju.com/",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+    }
     token = GetToken()
     UserInfo=ReadInfo()
     print(UserInfo)
