@@ -17,28 +17,28 @@ import qrcode
 import requests
 import urllib.request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
-import ssl
 import _thread
 import threading
 import re
 import pandas as pd
 import random
-# import multiprocessing
+# In[]
 ###################################################################################
 
 Script_Name = "报名工具"
 Name_Pinyin = "RTTT"
-Script_Change = "优化,官方链接检测更新"
-Script_Version = "1.5.1"
+Script_Change = "更新奇偶数功能"
+Script_Version = "1.5.2"
 
 ####################################请勿动以下部分####################################
 def ReadInfo():
     print("##############################参数设置模块###############################")
-    df = pd.read_excel('./参数.xlsx', usecols=['参数标题', '参数内容'])# 读取excel文件
+    df = pd.read_excel('./参数.xlsx', usecols=['参数标题', '参数内容', '功能', '值'])# 读取excel文件
     info = df.set_index('参数标题')['参数内容'].to_dict()# 将两列数据转换成字典格式
+    info_func = df.set_index('功能')['值'].to_dict()
     # print(info)
     print("##############################参数读取完成###############################")
-    return info
+    return info,info_func
 
 def Geterweima():
     print('获取二维码')
@@ -123,18 +123,31 @@ def Reg_Exp(text):
 
 #图片上传,在线获取URL图片链接
 def upload_pic(eid):
-    filename = "upload_image.jpg"
+    names0 = ''.join(random.sample('123456789', 1))
+    names1 = ''.join(random.sample('E7FJ8U2OwxyzA6WXHI9kYonjegSlmKbPhiQRfGTp4BZ1cd3VrsLM5atuvqDNC0', 31))
+    filename = 'tmp_' + names0 + names1 + '.jpg'
+    # filename = "upload_image"
     if os.path.isfile('./'+filename):
         print(f'{filename}文件存在')
     else:
-        print(f'{filename}文件不存在,生产中') 
+        print(f'{filename}文件不存在，随机生成一张') 
         download_urls = [
                 "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fci.xiaohongshu.com%2F48641552-06c0-37ac-8f6a-1f5e8752c4c0%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fci.xiaohongshu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1682143629&t=3ab7869f9aedb2824c5d6c6e339b0f42",
                 "https://www.baidu.com/img/flexible/logo/pc/result@2.png",
                 "https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png",
                 "https://i0.hdslb.com/bfs/archive/bcac17c22b1458a90a0a943ecf4e00ad9482ab84.png",
                 "http://www.iqiyipic.com/pcwimg/128-128-logo.png",
-                "https://y.qq.com/mediastyle/yqq/img/logo.png?max_age=2592000"
+                "https://y.qq.com/mediastyle/yqq/img/logo.png?max_age=2592000",
+                "https://fanyi-cdn.cdn.bcebos.com/static/translation/img/header/logo_e835568.png",
+                "https://fanyi.youdao.com/img/logo.6ed1c44b.png",
+                "https://static.52pojie.cn/static/image/common/logo.png",
+                "https://a.msstatic.com/huya/main3/static/img/logo2.png",
+                "https://imga2.5054399.com/upload_pic/2015/9/1/4399_17562395347.gif",
+                "https://img1.doubanio.com/f/sns/714b8751a533ef592bea5cd4603dbb9e713ded61/pics/sns/sitename.png",
+                "https://ac.gtimg.com/media/images/ac_logo.png",
+                "https://res.smzdm.com/resources/public/img/pc_global/logo.png?v=2022122216",
+                "https://www.speedtest.cn/images/logo.png?version=20221123",
+                
             ]
         download_url = random.choice(download_urls)
         urllib.request.urlretrieve(download_url, filename)
@@ -153,7 +166,7 @@ def upload_pic(eid):
             fields={
                     'biz_id': eid,'file': (filename,open('./'+filename,'rb'),'image/jpeg')
                 },
-            boundary='----WebKitFormBoundary{boundarys}')
+            boundary=f'----WebKitFormBoundary{boundarys}')
     headers["Content-Type"]=multipart_encoder.content_type
     response = requests.request("POST", url, headers=headers, data=multipart_encoder)
     ret = response.json()
@@ -233,12 +246,21 @@ def get_optioninfo(eid,token):
                 info.append(date)
             # print(info)
             # print(json.dumps(info, indent=4, ensure_ascii=False, sort_keys=True))
-            return info
+            # return info
     except Exception as e:
             print("\n获取infoti失败，重新获取")
             info = []
     return info
 
+# 奇数报名
+def CheckCount(eid,token):
+    url = f'https://api-xcx-qunsou.weiyoubot.cn/xcx/enroll/v3/detail?eid={eid}&access_token={token}&admin=0&from=detail&referer='
+    response = requests.request("GET",url,timeout=2)
+    data = response.json()
+    count_num = data['data']['count']
+    print(f'当前报名人数为 {count_num} 人')
+    return count_num
+        
 def clicked_button(token,index,start,num):
     # print(token)
     # print(index)
@@ -268,36 +290,56 @@ def clicked_button(token,index,start,num):
                         "referer": "",
                         "fee_type": ""
                     }
+                    # print(data)
                     global Send_index
-                    if Send_index == 1:
-                        ret = requests.post(url, headers=headers, data=json.dumps(data), verify=False, timeout=2).json()
-                    elif Send_index == 0:
-                        print('存在未知报名参数，暂停提交')
-                        ret['msg'] = ''
+                    if int(UserFunc['启用奇偶数']) == 10:#不启用
+                        if Send_index == 1:
+                            msgdata = requests.post(url, headers=headers, data=json.dumps(data), verify=False, timeout=2).json()
+                        elif Send_index == 0:
+                            print('存在未知报名参数，暂停提交\n'*10)
+                            msgdata =  { 'msg' : '活动名额已满'}
+                    elif int(UserFunc['启用奇偶数']) == 1 or int(UserFunc['启用奇偶数']) == 0:#启用
+                        if int(UserFunc['启用奇偶数']) == 1:
+                            print("本次报名奇数")
+                        else:
+                            print("本次报名偶数")
+                        while(1):
+                            if CheckCount(ClassEid[index], token) % 2 != int(UserFunc['启用奇偶数']):
+                                if Send_index == 1:
+                                    # print('提交')
+                                    # msgdata =  { 'msg' : ''}
+                                    msgdata = requests.post(url, headers=headers, data=json.dumps(data), verify=False, timeout=2).json()
+                                elif Send_index == 0:
+                                    print('存在未知报名参数，暂停提交\n'*10)
+                                    msgdata =  { 'msg' : '活动名额已满'}
+                                break    
+                            else:
+                                time.sleep(10)
+                                continue
                     # print(ret)
                     # print(ret['sta'])
-                    if ret['msg'] == '':
+                    if msgdata['msg'] == '':
                         print('线程', num, '（', ClassList[ClassEid[index]], '）:成功了兄弟!!!!!!!')
-                        print("##############################抢到了###############################")
+                        # print("##############################抢到了###############################")
                         # print("成功了兄弟!!!!!!!")
                         return
-                    elif ret['msg'] == '报名未开始':
+                    elif msgdata['msg'] == '报名未开始':
                         time.sleep(0.3)
                         continue
-                    elif ret['msg'] == '请求过于频繁，请稍后重试':
+                    elif msgdata['msg'] == '请求过于频繁，请稍后重试':
                         time.sleep(0.7)
                         continue
-                    elif ret['msg'] == '活动名额已满':
+                    elif msgdata['msg'] == '活动名额已满':
                         return
-                    elif ret['msg'] == '活动期间，只允许提交1次':
-                        print(ret['msg'])
+                    elif msgdata['msg'] == '活动期间，只允许提交1次':
+                        print(msgdata['msg'])
                         return
                     else:
-                        print('线程', num , '（', ClassList[ClassEid[index]], '）:', ret)
+                        print('线程', num , '（', ClassList[ClassEid[index]], '）:', msgdata)
                         # print(ret)
                         time.sleep(0.7)
-                        break
-                        # continue
+                        # break
+                        continue
                 except requests.exceptions.RequestException as e:
                     # print(e)
                     print('线程', num , '（', ClassList[ClassEid[index]], '）:',e)
@@ -339,8 +381,6 @@ class myThread(threading.Thread):
 
 def last_version(name, mold):
     url = ''
-    # name ='RTTT'
-    # mold =1
     if mold == 1:
         url = f"https://raw.githubusercontent.com/miranda0111/RegistrationTool-RTool/master/{name}.py"
     try:
@@ -360,6 +400,7 @@ def last_version(name, mold):
             return _data[0]
     except Exception as err:
         print(err)
+        
 # In[]
 if __name__ =='__main__':
     # multiprocessing.freeze_support()
@@ -371,8 +412,8 @@ if __name__ =='__main__':
         print(f"脚本版本一致，完成内容: {Script_Change}")
     else:
         print('发现版本更新！请尽快更新！📌 📌 📌 \n')
-        print(f"更新内容: {Script_Change}")
-    UserInfo= {},
+        # print(f"更新内容: {Script_Change}")
+    UserInfo,UserFunc= {},{}
     ClassEid = []
     ClassList = {}
     InfoList=[]
@@ -389,7 +430,7 @@ if __name__ =='__main__':
         "Sec-Fetch-Site": "cross-site",
     }
     token = GetToken()
-    UserInfo=ReadInfo()
+    UserInfo,UserFunc=ReadInfo()
     print(UserInfo)
     if token != '':
         print("登录成功!")
@@ -443,3 +484,5 @@ if __name__ =='__main__':
         t.join()
     print
     "主进程结束！"
+    
+    os.system("pause") #"脚本暂停"
